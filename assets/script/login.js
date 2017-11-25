@@ -15,7 +15,7 @@ function login()
         }, function (result) {
             console.log(result.success);
             if(result.success){
-                window.location = '../views/dashboard.php';
+                window.location = '../views/dashboard/dashboard.php';
             }else{
 
             }

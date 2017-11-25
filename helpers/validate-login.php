@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 
-include("../system/classes/login.php");
+include("../system/class.login.php");
 $validate = new Login("root", "", "loja");
 
 $username = empty($_GET['username']);
