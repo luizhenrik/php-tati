@@ -24,6 +24,12 @@ class Products extends Base{
         $conn->close();
     }
 
+    public function getProduct($id){
+        $result = $this->database->query("SELECT * FROM `produtos` WHERE `id` = '$id'");
+        return $result;
+        $conn->close();
+    }
+
     public function getAll(){
         $result = $this->database->query("SELECT * FROM `produtos`");
         return $result;
@@ -32,6 +38,12 @@ class Products extends Base{
 
     public function add($name,$price){
         $result = $this->database->query("INSERT INTO `produtos`(`id`, `nome`, `valor`) VALUES (NULL,'$name','$price')");
+        return $result;
+        $this->database->close();
+    }
+    
+    public function update($id, $name, $price){
+        $result = $this->database->query("UPDATE `produtos` SET `nome`='$name',`valor`='$price' WHERE `id` = '$id'");
         return $result;
         $this->database->close();
     }

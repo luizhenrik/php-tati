@@ -13,7 +13,8 @@
     <script src="../assets/lib/jquery-3.2.1.min.js"></script>
     <script src="../assets/script/login.js"></script>
     <script src="../assets/script/admin-add-products.js"></script>
+    <script src="../assets/script/admin-update-products.js"></script>
     <script src="../assets/script/admin-delete-products.js"></script>
-    <script src="../assets/script/dashboard.js"></script>
+    <script src="../assets/script/logout.js"></script>
     <title>Document</title>
 </head>

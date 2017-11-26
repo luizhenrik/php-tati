@@ -3,6 +3,12 @@
 <?php include('includes/head.php'); ?>
 <body>
     <?php include('includes/header.php'); ?>
-    <h1>Sistema E-Commerce</h1>
+    <main>
+        <div class="container">
+            <div class="row">
+                <?php include('list-products.php'); ?>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

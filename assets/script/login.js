@@ -15,6 +15,7 @@ function login()
                 pass: $password 
             }, function (result) {
                 console.log(result.success);
+                $this.children('.alert').remove();
                 if(result.success){
                     console.log(pathRoot);
                     window.location = pathRoot + 'views/index.php';
