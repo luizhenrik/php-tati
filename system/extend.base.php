@@ -4,7 +4,7 @@ abstract class Base {
     public $user;
     public $pass;
     protected $db_name;
-    protected $database;
+    public $database;
 
     public function __construct($username, $password, $db){
         $this->user = $username;

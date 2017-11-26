@@ -3,7 +3,7 @@ include("extend.base.php");
 class Login extends Base{
 
     public function user_exists($username){
-        $result = $this->database->query("SELECT `user` FROM `admins` WHERE `user` = '$username'");
+        $result = $this->database->query("SELECT `usuario` FROM `usuarios` WHERE `usuario` = '$username'");
         if ($result->num_rows > 0) {
             $exist = true;
         } else {
@@ -14,7 +14,7 @@ class Login extends Base{
     }
     
     public function pass_exists($password){
-        $result = $this->database->query("SELECT `password` FROM `admins` WHERE `password` = '$password'");
+        $result = $this->database->query("SELECT `senha` FROM `usuarios` WHERE `senha` = md5('$password')");
         if ($result->num_rows > 0) {
             $exist = true;
         } else {

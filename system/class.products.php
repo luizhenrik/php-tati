@@ -2,8 +2,19 @@
 include("extend.base.php");
 class Products extends Base{
 
-    public function product_exists($nome_do_produto){
-        $result = $this->database->query("SELECT `nome` FROM `produto` WHERE `nome` = '$nome_do_produto'");
+    public function product_exists_name($nome_do_produto){
+        $result = $this->database->query("SELECT `nome` FROM `produtos` WHERE `Nome` = '$nome_do_produto'");
+        if ($result->num_rows > 0) {
+            $exist = true;
+        } else {
+            $exist = false;
+        }
+        return $exist;
+        $conn->close();
+    }
+
+    public function product_exists_id($id){
+        $result = $this->database->query("SELECT `id` FROM `produtos` WHERE `id` = '$id'");
         if ($result->num_rows > 0) {
             $exist = true;
         } else {
@@ -14,17 +25,21 @@ class Products extends Base{
     }
 
     public function getAll(){
-        $result = $this->database->query("SELECT * FROM `produtos` WHERE 1");
+        $result = $this->database->query("SELECT * FROM `produtos`");
         return $result;
-        // if ($result->num_rows > 0) {
-        //     // output data of each row
-        //     while($row = $result->fetch_assoc()) {
-        //         echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-        //     }
-        // } else {
-        //     return "Nenhum produto cadastrado";
-        // }
-        $conn->close();
+        $this->database->close();
+    }
+
+    public function add($name,$price){
+        $result = $this->database->query("INSERT INTO `produtos`(`id`, `nome`, `valor`) VALUES (NULL,'$name','$price')");
+        return $result;
+        $this->database->close();
+    }
+
+    public function delete($id){
+        $result = $this->database->query("DELETE FROM `produtos` WHERE `id`='$id'");
+        return $result;
+        $this->database->close();
     }
 
 
