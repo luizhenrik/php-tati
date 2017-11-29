@@ -1,4 +1,7 @@
 <header>
+    <h1>
+        <a href="<?php echo BASE_URL ?>views/index.php">LOGO</a>
+    </h1>
     <?php
         if(!empty($_SESSION["username"])):
     ?>
