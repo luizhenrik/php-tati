@@ -4,7 +4,6 @@ class Cart{
 
     public $id_product;
     public $qtd_product;
-    public $id_frete;
 
     public function __construct(){
     }
@@ -24,7 +23,6 @@ class Cart{
     public function new_product($id_product, $qtd_product = 1, $id_frete = 1){
         $this->setArrayValueFromKeys($_SESSION['test'], "[$id_product][id_product]", $id_product);
         $this->setArrayValueFromKeys($_SESSION['test'], "[$id_product][qtd_product]", $qtd_product);
-        $this->setArrayValueFromKeys($_SESSION['test'], "[$id_product][id_frete]", $id_frete);
     }
 
 
@@ -59,7 +57,7 @@ class Cart{
         $this->setArrayValueFromKeys($_SESSION['test'], "[$id_product][qtd_product]", $qtd_product_sum);
     }
 
-    public function list_frete(){}
-
-    public function selected_frete($frete_selecionado){}
+    public function truncate_cart(){
+        unset($_SESSION['test']);
+    }
 }

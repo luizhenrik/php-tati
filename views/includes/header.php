@@ -10,4 +10,5 @@
     <?php else: ?>
         <a id="login" href="<?php echo BASE_URL ?>views/login.php">Login</a>  
     <?php endif; ?>
+    <a href="<?php echo BASE_URL ?>views/cart.php">Carrinho</a>  
 </header>

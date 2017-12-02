@@ -1,5 +1,6 @@
 jQuery(document).ready(function(){
     product_card();
+    truncate_cart();
 });
 
 function product_card()
@@ -18,6 +19,28 @@ function product_card()
                 console.log(result);
                 if(result.success){
                     window.location = pathRoot + 'views/cart.php';
+                }else{
+                    $this.append("ERORR");
+                }
+            });
+        });
+    }
+}
+
+function truncate_cart()
+{
+    if(jQuery('.button-cart--truncate').length > 0){
+        jQuery('.button-cart--truncate').on("click", function(r){
+            r.preventDefault();
+            var $this = jQuery(this),
+                $handler = $this.attr("data-handler");
+
+            jQuery.getJSON($this.attr('href'), { 
+                handler: $handler
+            }, function (result) {
+                console.log(result);
+                if(result.success){
+                    window.location = pathRoot + 'views/index.php';
                 }else{
                     $this.append("ERORR");
                 }

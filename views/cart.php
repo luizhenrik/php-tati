@@ -23,12 +23,20 @@
                         if($cart_products->num_rows > 0){
                             while($row = $cart_products->fetch_assoc()){
                                 echo 'Nome do produto: ' . "<br>" . $row['nome'] . "<br>";
+
                                 echo 'Valor do produto: ' . "<br>" . $row['valor'] . "<br>";
+
                                 echo 'QTD do produto: ' . "<br>" . $_SESSION['test'][$row['id']]['qtd_product'] . "<br>";
+
+                                echo 'Valor total do produto: ' . "<br>" . $row['valor'] * $_SESSION['test'][$row['id']]['qtd_product'] . "<br>";
+
                                 echo "<a class='button-cart' href='../helpers/validate-cart.php' data-handler='add_product' data-id='" . $row['id'] . "'>+</a>" . "<br>";
+
                                 echo "<a class='button-cart' href='../helpers/validate-cart.php' data-handler='remove_product' data-id='" . $row['id'] . "'>-</a>" . "<br>";
+
                                 echo "<a class='button-cart' href='../helpers/validate-cart.php' data-handler='del_product' data-id='" . $row['id'] . "'>trash</a>" . "<br>";
                             }
+                            echo "<a class='button-cart--truncate' href='../helpers/validate-cart-truncate.php' data-handler='truncate_cart'>Limpar carrinho</a>";
                         }else{
                             echo "<h2>Seu carrinho esta vazio.</h2>";
                         }
@@ -47,6 +55,7 @@
                 }
 
                 ?>
+                <a href="<?php echo BASE_URL ?>views/index.php">Continuar comprando</a>
             </div>
         </div>
     </main>
