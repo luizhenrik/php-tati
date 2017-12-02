@@ -1,0 +1,6 @@
+PARA CONSEGUIR UTILIZAR O SISTEMA DEVE CRIAR UM USUARIO NO PHPMYADMIN COM:
+username: root
+pass:
+dbname: loja
+
+* no pass deve deixar sem senha mesmo.
