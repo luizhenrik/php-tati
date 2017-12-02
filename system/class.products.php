@@ -25,20 +25,13 @@ class Products extends Base{
     }
 
     public function getSumTotalPricesInArray($array){
-        $result = $this->database->query("SELECT SUM(valor) AS 'value' FROM `produtos` WHERE `id` IN ('$array')");
-        $row = $result->fetch_assoc();
-
-        if (isset($row['value'])) {
-            // echo $row['value']
-            return $row['value'];
-        } else {
-            return false;
-        }
+        $result = $this->database->query("SELECT `id`, `valor` FROM `produtos` WHERE `id` IN ($array)");
+        return $result;
         $this->database->close();
     }
     
     public function getAllInArray($array){
-        $result = $this->database->query("SELECT * FROM `produtos` WHERE `id` IN ('$array')");
+        $result = $this->database->query("SELECT * FROM `produtos` WHERE `id` IN ($array)");
         return $result;
         $this->database->close();
     }

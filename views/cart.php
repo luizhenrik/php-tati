@@ -18,8 +18,9 @@
 
                     // Trazer Produtos do carrinho
                     if(isset($_SESSION['test'])){
-                        $cart_products= $products->getAllInArray(implode(",", array_keys($_SESSION['test'])));
-                        if($cart_products->num_rows >= 1){
+                        //print_r($_SESSION['test']);
+                        $cart_products= $products->getAllInArray('"' . implode('","', array_keys($_SESSION['test'])) . '"');
+                        if($cart_products->num_rows > 0){
                             while($row = $cart_products->fetch_assoc()){
                                 echo 'Nome do produto: ' . "<br>" . $row['nome'] . "<br>";
                                 echo 'Valor do produto: ' . "<br>" . $row['valor'] . "<br>";
@@ -32,9 +33,15 @@
                             echo "<h2>Seu carrinho esta vazio.</h2>";
                         }
                         // Trazer soma total de produtos no carrinho
-                        if($products->getSumTotalPricesInArray(implode(",", array_keys($_SESSION['test']))) !== false){ 
-                            echo 'Total R$' . $products->getSumTotalPricesInArray(implode(",", array_keys($_SESSION['test'])));
-                        }
+                        
+                            $sql_total = $products->getSumTotalPricesInArray('"' . implode('","', array_keys($_SESSION['test'])) . '"');
+                            if($sql_total->num_rows > 0){
+                                $total = 0;
+                                while($row_values = $sql_total->fetch_assoc()){
+                                    $total = $total + ($row_values['valor'] * $_SESSION['test'][$row_values['id']]['qtd_product']);
+                                }
+                                echo 'Total: R$' . $total;
+                            }
                 }else{
                     echo "<h2>Seu carrinho esta vazio.</h2>";
                 }
