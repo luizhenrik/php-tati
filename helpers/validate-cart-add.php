@@ -7,9 +7,13 @@ session_start();
 include("../system/class.products.php");
 include("../system/class.cart.php");
 
-// Declare Classes
-$products = new Products("root", "", "loja");
-$cart = new Cart();
-$cart->product_exists($_GET['id']);
+if(isset($_GET['id'])){
+    // Declare Classes
+    $products = new Products("root", "", "loja");
+    $cart = new Cart();
+    $cart->product_exists($_GET['id']);
+}else{
+    echo 'ERRo';
+}
 
 // session_destroy();
