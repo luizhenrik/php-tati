@@ -17,6 +17,7 @@ $all_products = $products->getAll();
                 <h5 class="card-price">R$ <?php echo $row['valor']; ?></h5>
                 <a href="<?php echo BASE_URL ?>views/update-products.php?id=<?php echo $row['id']; ?>" class="btn btn-success btn-lg btn-block">Editar</a>
                 <a href="<?php echo BASE_URL ?>helpers/validate-admin-delete.php" data-id="<?php echo $row['id']; ?>" class="btn btn-danger btn-lg btn-block delete-product">Excluir</a>
+                <a href="<?php echo BASE_URL ?>helpers/validate-cart.php" data-id="<?php echo $row['id']; ?>" data-handler="new_product" class="button-cart btn btn-info btn-lg btn-block">Adiciona no carrinho</a>
             </div>
         </li>
     <?php

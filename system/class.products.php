@@ -32,7 +32,6 @@ class Products extends Base{
             // echo $row['value']
             return $row['value'];
         } else {
-            echo "Produtos nao cadastrados";
             return false;
         }
         $this->database->close();
@@ -40,7 +39,6 @@ class Products extends Base{
     
     public function getAllInArray($array){
         $result = $this->database->query("SELECT * FROM `produtos` WHERE `id` IN ('$array')");
-        echo $result;
         return $result;
         $this->database->close();
     }

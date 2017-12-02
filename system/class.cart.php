@@ -46,6 +46,7 @@ class Cart{
 
     public function del_product($id_product){
         unset($_SESSION['test'][$id_product]);
+        return $_SESSION['test'];
     }
 
     public function remove_product($id_product){
