@@ -9,12 +9,6 @@ class Cart{
     public function __construct(){
     }
     
-    public function new_product($id_product, $qtd_product = 1, $id_frete = 1){
-        $this->setArrayValueFromKeys($_SESSION['test'], "[$id_product][id_product]", $id_product);
-        $this->setArrayValueFromKeys($_SESSION['test'], "[$id_product][qtd_product]", $qtd_product);
-        $this->setArrayValueFromKeys($_SESSION['test'], "[$id_product][id_frete]", $id_frete);
-    }
-
     public function setArrayValueFromKeys(&$array, $keys, $value) {
         $keys = explode('][', trim($keys, '[]'));
         $reference = &$array;
@@ -27,21 +21,42 @@ class Cart{
         $reference = $value;
     }
 
+    public function new_product($id_product, $qtd_product = 1, $id_frete = 1){
+        $this->setArrayValueFromKeys($_SESSION['test'], "[$id_product][id_product]", $id_product);
+        $this->setArrayValueFromKeys($_SESSION['test'], "[$id_product][qtd_product]", $qtd_product);
+        $this->setArrayValueFromKeys($_SESSION['test'], "[$id_product][id_frete]", $id_frete);
+    }
+
+
     public function product_exists($id_product){
         if(!isset($_SESSION['test'][$id_product])){
             $_SESSION['test'][$id_product] = (array)$this;
         }
-
+        
+        $this->product_qtd_exists($id_product);
+    }
+    
+    public function product_qtd_exists($id_product){
         if(!isset($_SESSION['test'][$id_product]['id_product'])){
             $this->new_product($id_product);
         }else{
-            $qtd_product_sum = $_SESSION['test'][$id_product]['qtd_product'] + 1;
-            $this->setArrayValueFromKeys($_SESSION['test'], "[$id_product][qtd_product]", $qtd_product_sum);
+            $this->add_product($id_product);
         }
-        var_dump($_SESSION['test']);
     }
 
-    public function delete_product($product){}
+    public function del_product($id_product){
+        unset($_SESSION['test'][$id_product]);
+    }
+
+    public function remove_product($id_product){
+        $qtd_product_subtract = ($_SESSION['test'][$id_product]['qtd_product'] <= 1) ? 1 : $_SESSION['test'][$id_product]['qtd_product'] - 1;
+        $this->setArrayValueFromKeys($_SESSION['test'], "[$id_product][qtd_product]", $qtd_product_subtract);
+    }
+    
+    public function add_product($id_product){
+        $qtd_product_sum = $_SESSION['test'][$id_product]['qtd_product'] + 1;
+        $this->setArrayValueFromKeys($_SESSION['test'], "[$id_product][qtd_product]", $qtd_product_sum);
+    }
 
     public function list_frete(){}
 

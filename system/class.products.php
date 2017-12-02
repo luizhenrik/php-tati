@@ -10,7 +10,7 @@ class Products extends Base{
             $exist = false;
         }
         return $exist;
-        $conn->close();
+        $this->database->close();
     }
 
     public function product_exists_id($id){
@@ -21,13 +21,34 @@ class Products extends Base{
             $exist = false;
         }
         return $exist;
-        $conn->close();
+        $this->database->close();
+    }
+
+    public function getSumTotalPricesInArray($array){
+        $result = $this->database->query("SELECT SUM(valor) AS 'value' FROM `produtos` WHERE `id` IN ('$array')");
+        $row = $result->fetch_assoc();
+
+        if (isset($row['value'])) {
+            // echo $row['value']
+            return $row['value'];
+        } else {
+            echo "Produtos nao cadastrados";
+            return false;
+        }
+        $this->database->close();
+    }
+    
+    public function getAllInArray($array){
+        $result = $this->database->query("SELECT * FROM `produtos` WHERE `id` IN ('$array')");
+        echo $result;
+        return $result;
+        $this->database->close();
     }
 
     public function getProduct($id){
         $result = $this->database->query("SELECT * FROM `produtos` WHERE `id` = '$id'");
         return $result;
-        $conn->close();
+        $this->database->close();
     }
 
     public function getAll(){
